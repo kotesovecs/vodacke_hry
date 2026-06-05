@@ -8,6 +8,7 @@ class GameInfo {
     required this.icon,
     required this.color,
     required this.builder,
+    this.drinking = false,
   });
 
   final String title;
@@ -15,4 +16,7 @@ class GameInfo {
   final IconData icon;
   final Color color;
   final WidgetBuilder builder;
+
+  /// Pijácká hra – v menu se ukáže jen v párty režimu.
+  final bool drinking;
 }

@@ -8,6 +8,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../data/content.dart';
 import '../theme.dart';
+import '../widgets/party_banner.dart';
 
 class HeadsUpScreen extends StatefulWidget {
   const HeadsUpScreen({super.key});
@@ -179,7 +180,12 @@ class _HeadsUpScreenState extends State<HeadsUpScreen> {
               style: TextStyle(color: AppColors.textHi, height: 1.4),
             ),
           ),
-          const SizedBox(height: 22),
+          const SizedBox(height: 14),
+          const PartyBanner(
+            text: 'Hádající pije za každé neuhodnuté slovo!',
+            margin: EdgeInsets.zero,
+          ),
+          const SizedBox(height: 8),
           const Text('Délka kola',
               style: TextStyle(
                   fontSize: 17,

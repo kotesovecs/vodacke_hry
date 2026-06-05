@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../data/content.dart';
 import '../theme.dart';
+import '../widgets/party_banner.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -120,6 +121,12 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ),
         ),
+        if (_picked != null)
+          PartyBanner(
+            text: _picked == _questions[_index].correctIndex
+                ? 'Správně! Rozdej jeden lok, komu chceš.'
+                : 'Špatně! Dej si lok 🍺',
+          ),
         if (_picked != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),

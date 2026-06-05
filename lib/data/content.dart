@@ -160,6 +160,101 @@ const List<QuizQuestion> quiz = [
   ),
 ];
 
+// ---------------------------------------------------------------------------
+// PIJÁCKÉ HRY (párty režim 🍺) – obsah pro dospělé. Pijte s rozumem!
+// ---------------------------------------------------------------------------
+
+/// „Já nikdy nikdy…" – kdo to udělal, pije (nebo se přizná).
+/// Pohodová úroveň k ohni.
+const List<String> neverMild = [
+  'Já nikdy nikdy nespadl(a) z lodi.',
+  'Já nikdy nikdy nepřespal(a) pod širákem.',
+  'Já nikdy nikdy nezapomněl(a) doma něco důležitého na vodu.',
+  'Já nikdy nikdy se nevykoupal(a) oblečený(á).',
+  'Já nikdy nikdy nesnědl(a) cizí svačinu.',
+  'Já nikdy nikdy neztratil(a) ve vodě nějakou věc.',
+  'Já nikdy nikdy nezpíval(a) u ohně falešně.',
+  'Já nikdy nikdy neusnul(a) na lodi.',
+  'Já nikdy nikdy se v noci neztratil(a) cestou na záchod.',
+  'Já nikdy nikdy nepřevrhl(a) loď.',
+  'Já nikdy nikdy nezakopl(a) o stanovou šňůru.',
+  'Já nikdy nikdy nejel(a) na vodu úplně bez přípravy.',
+  'Já nikdy nikdy nezapomněl(a), kde mám stan.',
+  'Já nikdy nikdy nespálil(a) si buřta na uhel.',
+];
+
+/// „Já nikdy nikdy…" – ostřejší úroveň, večer mezi dospělými.
+const List<String> neverSpicy = [
+  'Já nikdy nikdy nepolíbil(a) někoho z party.',
+  'Já nikdy nikdy neusnul(a) opilý(á) u ohně.',
+  'Já nikdy nikdy si nedal(a) panáka k snídani.',
+  'Já nikdy nikdy se nevykoupal(a) nahý(á) v řece.',
+  'Já nikdy nikdy neflirtoval(a) s někým z jiné posádky.',
+  'Já nikdy nikdy nelhal(a) o tom, kolik jsem vypil(a).',
+  'Já nikdy nikdy neztratil(a) na výletě kus oblečení.',
+  'Já nikdy nikdy si nespletl(a) cizí stan se svým.',
+  'Já nikdy nikdy neposlal(a) opilou zprávu, které jsem pak litoval(a).',
+  'Já nikdy nikdy neměl(a) okno z předešlého večera.',
+  'Já nikdy nikdy jsem se nelíbal(a) s někým, koho jsem ten den poznal(a).',
+  'Já nikdy nikdy jsem ráno nevěděl(a), jak jsem se dostal(a) do stanu.',
+];
+
+/// „Pij když…" – pravidla, podle kterých se naráz pije.
+const List<String> drinkRules = [
+  'Všichni, kdo mají na sobě něco modrého, pijí.',
+  'Poslední, kdo zvedl ruku, pije.',
+  'Nejmladší a nejstarší u ohně si připijí.',
+  'Každý, kdo dnes spadl do vody, pije.',
+  'Kdo má teď telefon v ruce, pije.',
+  'Holky pijí.',
+  'Kluci pijí.',
+  'Kdo nosí brýle, pije.',
+  'Všichni s mokrými ponožkami pijí.',
+  'Kdo se jako poslední napil, pije znovu.',
+  'Ten, kdo sedí nejblíž ohni, pije.',
+  'Každý, kdo dnes řekl „ještě jedno", pije.',
+  'Kdo má vousy, pije.',
+  'Všichni najednou – na zdraví!',
+  'Kdo zatím nepil, dohání dvěma loky.',
+  'Ten, kdo dnes stavěl stan, si zaslouží lok.',
+  'Kdo umí vyjmenovat 3 vodácké řeky, rozdává loky. Kdo neumí, pije.',
+  'Kdo má nejšpinavější boty, pije.',
+  'Poslední, kdo přišel k ohni, pije.',
+  'Kdo dnes pádloval nejvíc, ať si dá zaslouženě lok.',
+];
+
+/// „Kostka osudu" – náhodně se zkombinuje KDO + CO. Subjekt je v 1. pádě,
+/// akce navazuje, aby věta dávala smysl: `who` + mezera + `what`.
+const List<String> diceWho = [
+  'Nejmladší z party',
+  'Nejstarší z party',
+  'Soused po levici',
+  'Soused po pravici',
+  'Ten, kdo dnes řídil loď,',
+  'Ten, kdo právě mluví,',
+  'Poslední, kdo se napil,',
+  'Ten, kdo má nejdelší vlasy,',
+  'Majitel tohoto telefonu',
+  'Ten, kdo se nejvíc směje,',
+  'Celá posádka',
+  'Ten, kdo má nejhlučnější smích,',
+];
+
+const List<String> diceWhat = [
+  'si dá 1 lok.',
+  'si dá 2 loky.',
+  'si dá 3 loky.',
+  'si dá panáka.',
+  'rozdá 2 loky komukoliv.',
+  'pije s tím, koho si vybere.',
+  'vymyslí pravidlo do dalšího kola.',
+  'má štěstí – tentokrát nepije.',
+  'dopije, co má zrovna v ruce.',
+  'si ťukne se sousedem a oba pijí.',
+  'si dá lok a zazpívá řádek písničky.',
+  'pije za každého, kdo má stejnou barvu trika.',
+];
+
 /// „Aktivity" – slova k předvádění/popisování, rozdělená podle kategorie.
 class CharadesCategory {
   const CharadesCategory(this.name, this.words);

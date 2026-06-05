@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 import '../data/content.dart';
 import '../theme.dart';
-import '../widgets/party_banner.dart';
 
-class MostLikelyScreen extends StatefulWidget {
-  const MostLikelyScreen({super.key});
+class NeverHaveIEverScreen extends StatefulWidget {
+  const NeverHaveIEverScreen({super.key});
 
   @override
-  State<MostLikelyScreen> createState() => _MostLikelyScreenState();
+  State<NeverHaveIEverScreen> createState() => _NeverHaveIEverScreenState();
 }
 
-class _MostLikelyScreenState extends State<MostLikelyScreen> {
+class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
+  bool _spicy = false;
   late List<String> _order;
   int _index = 0;
 
@@ -23,8 +23,10 @@ class _MostLikelyScreenState extends State<MostLikelyScreen> {
     _shuffle();
   }
 
+  List<String> get _deck => _spicy ? neverSpicy : neverMild;
+
   void _shuffle() {
-    _order = List<String>.from(mostLikely)..shuffle(Random());
+    _order = List<String>.from(_deck)..shuffle(Random());
     _index = 0;
   }
 
@@ -40,19 +42,36 @@ class _MostLikelyScreenState extends State<MostLikelyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final question = _order[_index];
+    final statement = _order[_index];
     return Scaffold(
-      appBar: AppBar(title: const Text('Kdo z nás nejspíš…')),
+      appBar: AppBar(
+        title: const Text('Já nikdy nikdy'),
+        actions: [
+          Row(
+            children: [
+              const Text('🌶️', style: TextStyle(fontSize: 16)),
+              Switch(
+                value: _spicy,
+                activeColor: AppColors.rose,
+                onChanged: (v) => setState(() {
+                  _spicy = v;
+                  _shuffle();
+                }),
+              ),
+            ],
+          ),
+        ],
+      ),
       extendBodyBehindAppBar: true,
       body: FireBackground(
-        glow: AppColors.river,
+        glow: AppColors.rose,
         child: SafeArea(
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  'Otázka ${_index + 1} / ${_order.length}',
+                  _spicy ? 'Úroveň: pikantní 🌶️' : 'Úroveň: pohodová',
                   style: const TextStyle(color: AppColors.textLo),
                 ),
               ),
@@ -67,25 +86,25 @@ class _MostLikelyScreenState extends State<MostLikelyScreen> {
                         child: ScaleTransition(scale: anim, child: child),
                       ),
                       child: Column(
-                        key: ValueKey(question),
+                        key: ValueKey(statement),
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.how_to_vote,
-                              size: 52, color: AppColors.river),
+                          const Icon(Icons.local_bar,
+                              size: 52, color: AppColors.rose),
                           const SizedBox(height: 24),
                           Text(
-                            question,
+                            statement,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 30,
-                              height: 1.25,
+                              fontSize: 28,
+                              height: 1.3,
                               fontWeight: FontWeight.w800,
                               color: AppColors.textHi,
                             ),
                           ),
                           const SizedBox(height: 20),
                           const Text(
-                            'Na 3 všichni ukažte prstem!',
+                            'Kdo to udělal, pije! 🍺',
                             style: TextStyle(
                               color: AppColors.textLo,
                               fontSize: 15,
@@ -97,9 +116,6 @@ class _MostLikelyScreenState extends State<MostLikelyScreen> {
                   ),
                 ),
               ),
-              const PartyBanner(
-                text: 'Na koho ukáže nejvíc prstů, pije!',
-              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
                 child: SizedBox(
@@ -107,11 +123,10 @@ class _MostLikelyScreenState extends State<MostLikelyScreen> {
                   child: ElevatedButton.icon(
                     onPressed: _next,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.river,
-                      foregroundColor: AppColors.night,
+                      backgroundColor: AppColors.rose,
                     ),
                     icon: const Icon(Icons.arrow_forward),
-                    label: const Text('Další otázka'),
+                    label: const Text('Další'),
                   ),
                 ),
               ),

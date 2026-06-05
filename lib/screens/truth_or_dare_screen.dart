@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../data/content.dart';
 import '../theme.dart';
+import '../widgets/party_banner.dart';
 
 class TruthOrDareScreen extends StatefulWidget {
   const TruthOrDareScreen({super.key});
@@ -71,6 +72,9 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                     ),
                   ),
                 ),
+              ),
+              const PartyBanner(
+                text: 'Nechceš odpovědět nebo plnit úkol? Pij!',
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),

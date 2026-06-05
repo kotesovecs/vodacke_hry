@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../models/game.dart';
+import '../state/party_mode.dart';
 import '../theme.dart';
 import 'charades_screen.dart';
+import 'dice_screen.dart';
+import 'drink_rules_screen.dart';
 import 'heads_up_screen.dart';
 import 'most_likely_screen.dart';
+import 'never_have_i_ever_screen.dart';
 import 'quiz_screen.dart';
 import 'truth_or_dare_screen.dart';
 
@@ -47,6 +51,30 @@ class HomeScreen extends StatelessWidget {
           color: AppColors.ember,
           builder: (_) => const QuizScreen(),
         ),
+        GameInfo(
+          title: 'Já nikdy nikdy',
+          tagline: 'Kdo to udělal, pije',
+          icon: Icons.local_bar,
+          color: AppColors.rose,
+          builder: (_) => const NeverHaveIEverScreen(),
+          drinking: true,
+        ),
+        GameInfo(
+          title: 'Pij když…',
+          tagline: 'Pravidla, podle kterých se pije',
+          icon: Icons.sports_bar,
+          color: AppColors.gold,
+          builder: (_) => const DrinkRulesScreen(),
+          drinking: true,
+        ),
+        GameInfo(
+          title: 'Kostka osudu',
+          tagline: 'Osud rozhodne, kdo si přihne',
+          icon: Icons.casino,
+          color: AppColors.ember,
+          builder: (_) => const DiceScreen(),
+          drinking: true,
+        ),
       ];
 
   @override
@@ -54,22 +82,32 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: FireBackground(
         child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              const SliverToBoxAdapter(child: _Header()),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                sliver: SliverList.separated(
-                  itemCount: _games.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 14),
-                  itemBuilder: (context, i) => _GameCard(
-                    info: _games[i],
-                    index: i,
+          child: ValueListenableBuilder<bool>(
+            valueListenable: partyMode,
+            builder: (context, party, _) {
+              final games = party
+                  ? _games
+                  : _games.where((g) => !g.drinking).toList();
+              return CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(child: _Header()),
+                  if (party)
+                    const SliverToBoxAdapter(child: _PartyNotice()),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                    sliver: SliverList.separated(
+                      itemCount: games.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 14),
+                      itemBuilder: (context, i) => _GameCard(
+                        info: games[i],
+                        index: i,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SliverToBoxAdapter(child: _Footer()),
-            ],
+                  const SliverToBoxAdapter(child: _Footer()),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -108,7 +146,99 @@ class _Header extends StatelessWidget {
                   color: AppColors.textLo,
                 ),
           ),
+          const SizedBox(height: 16),
+          const _PartyToggle(),
         ],
+      ),
+    );
+  }
+}
+
+class _PartyToggle extends StatelessWidget {
+  const _PartyToggle();
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: partyMode,
+      builder: (context, on, _) {
+        return Material(
+          color: on
+              ? AppColors.ember.withValues(alpha: 0.16)
+              : AppColors.nightCard,
+          borderRadius: BorderRadius.circular(18),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(18),
+            onTap: () => partyMode.value = !on,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: on ? AppColors.ember : Colors.transparent,
+                  width: 1.5,
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Text('🍺', style: TextStyle(fontSize: 22)),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Párty režim',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.textHi,
+                          ),
+                        ),
+                        Text(
+                          on
+                              ? 'Pijácké hry a pití jako sázka zapnuto'
+                              : 'Zapni pijácké hry a sázky o loky',
+                          style: const TextStyle(
+                            fontSize: 12.5,
+                            color: AppColors.textLo,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Switch(
+                    value: on,
+                    activeColor: AppColors.ember,
+                    onChanged: (v) => partyMode.value = v,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PartyNotice extends StatelessWidget {
+  const _PartyNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors.nightCardHi,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: const Text(
+        '🔞 Jen pro dospělé. Pijte s rozumem a nikdy ne na lodi nebo ve vodě — '
+        'alkohol a voda jsou nebezpečná kombinace. Vždy je v pořádku dát si '
+        'jen vodu.',
+        style: TextStyle(color: AppColors.textLo, fontSize: 12.5, height: 1.4),
       ),
     );
   }

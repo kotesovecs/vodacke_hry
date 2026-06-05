@@ -6,6 +6,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../data/content.dart';
 import '../theme.dart';
+import '../widgets/party_banner.dart';
 
 class CharadesScreen extends StatefulWidget {
   const CharadesScreen({super.key});
@@ -216,6 +217,11 @@ class _CharadesScreenState extends State<CharadesScreen> {
             'Drž telefon tak, aby na slovo viděl jen předvádějící. '
             'Uhodnuté = ťukni vpravo, přeskoč = vlevo.',
             style: TextStyle(color: AppColors.textLo, fontSize: 13),
+          ),
+          const SizedBox(height: 14),
+          const PartyBanner(
+            text: 'Za každé přeskočené slovo lok na konci kola!',
+            margin: EdgeInsets.zero,
           ),
         ],
       ),

@@ -14,6 +14,20 @@ pravidel** — velká písmena, tmavé téma, vše česky.
 | **Aktivity** | Předváděj/popisuj slova na čas. Výběr kategorií a délky kola, počítání bodů. |
 | **Vodácký kvíz** | Otázky o pádlování, řekách a táboření s vyhodnocením. |
 
+### 🍺 Párty režim (jen pro dospělé)
+
+Přepínač **Párty režim** v menu zapne pijácké prvky:
+
+| Hra | Princip |
+| --- | --- |
+| **Já nikdy nikdy** | Kdo to udělal, pije. Pohodová i pikantní úroveň. |
+| **Pij když…** | Karty s pravidly, podle kterých se naráz pije. |
+| **Kostka osudu** | Hod rozhodne, kdo a kolik si přihne. |
+
+Navíc do klasických her přidá pití jako sázku (špatná odpověď v kvízu = lok,
+odmítnutý úkol = pij apod.). **Pijte s rozumem a nikdy ne na vodě** — alkohol
+a voda jsou nebezpečná kombinace.
+
 ## Spuštění
 
 ```bash
@@ -35,7 +49,9 @@ lib/
   main.dart                 # vstupní bod, téma, orientace
   theme.dart                # tmavé „u ohně" téma + ohnivé pozadí
   models/game.dart          # popis hry pro menu
+  state/party_mode.dart     # globální přepínač párty režimu
   data/content.dart         # VEŠKERÝ obsah her (otázky, slova, úkoly)
+  widgets/party_banner.dart # pruh s pijáckým pravidlem (jen v párty režimu)
   screens/
     home_screen.dart        # hlavní menu (herní krabice)
     heads_up_screen.dart    # Kdo jsem?
@@ -43,6 +59,9 @@ lib/
     truth_or_dare_screen.dart
     charades_screen.dart    # Aktivity
     quiz_screen.dart        # Vodácký kvíz
+    never_have_i_ever_screen.dart # Já nikdy nikdy 🍺
+    drink_rules_screen.dart # Pij když… 🍺
+    dice_screen.dart        # Kostka osudu 🍺
 ```
 
 ## Jak přidat vlastní obsah
