@@ -20,11 +20,11 @@ Přepínač **Párty režim** v menu zapne pijácké prvky:
 
 | Hra | Princip |
 | --- | --- |
-| **Já nikdy nikdy** | Kdo to udělal, pije. Pohodová i pikantní úroveň. |
+| **Nikdy jsem** | Kdo to udělal, pije. Pohodová i pikantní úroveň. |
 | **Pij když…** | Karty s pravidly, podle kterých se naráz pije. |
 | **Kostka osudu** | Hod rozhodne, kdo a kolik si přihne. |
 
-Navíc do klasických her přidá pití jako sázku (špatná odpověď v kvízu = lok,
+Navíc do klasických her přidá pití jako sázku (špatná odpověď v kvízu = napiješ se,
 odmítnutý úkol = pij apod.). **Pijte s rozumem a nikdy ne na vodě** — alkohol
 a voda jsou nebezpečná kombinace.
 
@@ -59,7 +59,7 @@ lib/
     truth_or_dare_screen.dart
     charades_screen.dart    # Aktivity
     quiz_screen.dart        # Vodácký kvíz
-    never_have_i_ever_screen.dart # Já nikdy nikdy 🍺
+    never_have_i_ever_screen.dart # Nikdy jsem 🍺
     drink_rules_screen.dart # Pij když… 🍺
     dice_screen.dart        # Kostka osudu 🍺
 ```

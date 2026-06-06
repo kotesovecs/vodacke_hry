@@ -124,8 +124,8 @@ class _QuizScreenState extends State<QuizScreen> {
         if (_picked != null)
           PartyBanner(
             text: _picked == _questions[_index].correctIndex
-                ? 'Správně! Rozdej jeden lok, komu chceš.'
-                : 'Špatně! Dej si lok 🍺',
+                ? 'Správně! Tentokrát se nemusíš napít.'
+                : 'Špatně! Napij se 1 krát 🍺',
           ),
         if (_picked != null)
           Padding(

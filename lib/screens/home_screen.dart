@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
           builder: (_) => const QuizScreen(),
         ),
         GameInfo(
-          title: 'Já nikdy nikdy',
+          title: 'Nikdy jsem',
           tagline: 'Kdo to udělal, pije',
           icon: Icons.local_bar,
           color: AppColors.rose,
@@ -198,7 +198,7 @@ class _PartyToggle extends StatelessWidget {
                         Text(
                           on
                               ? 'Pijácké hry a pití jako sázka zapnuto'
-                              : 'Zapni pijácké hry a sázky o loky',
+                              : 'Zapni pijácké hry a sázky o pití',
                           style: const TextStyle(
                             fontSize: 12.5,
                             color: AppColors.textLo,

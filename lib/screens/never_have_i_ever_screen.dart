@@ -45,7 +45,7 @@ class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
     final statement = _order[_index];
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Já nikdy nikdy'),
+        title: const Text('Nikdy jsem'),
         actions: [
           Row(
             children: [

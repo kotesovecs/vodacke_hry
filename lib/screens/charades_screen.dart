@@ -220,7 +220,7 @@ class _CharadesScreenState extends State<CharadesScreen> {
           ),
           const SizedBox(height: 14),
           const PartyBanner(
-            text: 'Za každé přeskočené slovo lok na konci kola!',
+            text: 'Za každé přeskočené slovo se napiješ 1 krát na konci kola!',
             margin: EdgeInsets.zero,
           ),
         ],
