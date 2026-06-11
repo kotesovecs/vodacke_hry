@@ -22,7 +22,24 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
 
   void _draw(bool wantDare) {
     final pool = _deck.where((c) => c.isDare == wantDare).toList();
-    setState(() => _current = pool[_rng.nextInt(pool.length)]);
+    if (pool.isEmpty) return;
+
+    final previous = _current;
+    DareCard next;
+    if (pool.length == 1) {
+      next = pool.first;
+    } else {
+      do {
+        next = pool[_rng.nextInt(pool.length)];
+      } while (previous != null && next.text == previous.text);
+    }
+    setState(() => _current = next);
+  }
+
+  void _skip() {
+    final card = _current;
+    if (card == null) return;
+    _draw(card.isDare);
   }
 
   @override
@@ -61,9 +78,9 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                 ),
               ),
               Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(28),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                  child: Center(
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 280),
                       child: card == null
@@ -73,6 +90,31 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                   ),
                 ),
               ),
+              if (card != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: TextButton.icon(
+                      onPressed: _skip,
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.textLo,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
+                      ),
+                      icon: const Icon(Icons.skip_next, size: 22),
+                      label: const Text(
+                        'Přeskočit',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               const PartyBanner(
                 text: 'Nechceš odpovědět nebo plnit úkol? Pij!',
               ),

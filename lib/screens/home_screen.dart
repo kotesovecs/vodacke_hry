@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
           drinking: true,
         ),
         GameInfo(
-          title: 'Kostka osudu',
+          title: 'Kostka',
           tagline: 'Osud rozhodne, kdo si přihne',
           icon: Icons.casino,
           color: AppColors.ember,
